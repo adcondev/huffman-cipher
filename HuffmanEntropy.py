@@ -180,31 +180,32 @@ def countletters(file):
     for l,v in results.items():
         results[l] = v/total
     return (results,total)
-Frecuencias, total = countletters(file)
-H = HuffmanTree(Frecuencias)
-Codigos = H.HuffmanCodes(True)
-print("Longitud del mensaje:", total)
-alpha = len(Frecuencias)
-print("Longitud de alfabeto:", alpha)
-print("Histograma y codificación:")
-for k,v in Frecuencias.items():
-    print(k,":",v,":",Codigos[k])
-Decodigos = H.HuffmanCodes(False)
-Frecs = [y for _,y in Frecuencias.items()]
-Codes = [x for x,_ in Decodigos.items()]
-Codes.reverse()
-NumBits = sum([f*len(c) for f,c in zip(Frecs, Codes)])
-Entropy = sum([x*log(1/x,2) for x in Frecs])
-R = Entropy
-print("Entropia:", R, "bits/letter")
-r = Entropy/alpha
-print("Rango Absoluto:", r, "bits/letter")
-print("Redundancia:", R - r)
-print("Promedio de bits(Huffman Codes):", NumBits)
-InfoQuant = {}
-for l,v in Frecuencias.items():
-    InfoQuant[l] = log(1/v,2)
-print("Información por caracter:")
-for k,v in InfoQuant.items():
-    print(k,"",v)
-print("Entropía:", Entropy, "AvBits:", NumBits, "Entropía + 1:", Entropy + 1)
+if __name__ == '__main__':
+    Frecuencias, total = countletters(file)
+    H = HuffmanTree(Frecuencias)
+    Codigos = H.HuffmanCodes(True)
+    print("Longitud del mensaje:", total)
+    alpha = len(Frecuencias)
+    print("Longitud de alfabeto:", alpha)
+    print("Histograma y codificación:")
+    for k,v in Frecuencias.items():
+        print(k,":",v,":",Codigos[k])
+    Decodigos = H.HuffmanCodes(False)
+    Frecs = [y for _,y in Frecuencias.items()]
+    Codes = [x for x,_ in Decodigos.items()]
+    Codes.reverse()
+    NumBits = sum([f*len(c) for f,c in zip(Frecs, Codes)])
+    Entropy = sum([x*log(1/x,2) for x in Frecs])
+    R = Entropy
+    print("Entropia:", R, "bits/letter")
+    r = Entropy/alpha
+    print("Rango Absoluto:", r, "bits/letter")
+    print("Redundancia:", R - r)
+    print("Promedio de bits(Huffman Codes):", NumBits)
+    InfoQuant = {}
+    for l,v in Frecuencias.items():
+        InfoQuant[l] = log(1/v,2)
+    print("Información por caracter:")
+    for k,v in InfoQuant.items():
+        print(k,"",v)
+    print("Entropía:", Entropy, "AvBits:", NumBits, "Entropía + 1:", Entropy + 1)

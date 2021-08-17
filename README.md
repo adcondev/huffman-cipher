@@ -1,0 +1,2 @@
+# huffman-cipher
+Symmetric encription.

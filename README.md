@@ -1,12 +1,12 @@
 # Huffman Cipher 🔐
 
-A symmetric encryption system that combines Huffman coding for compression with XOR cipher for security. Achieve both data compression and encryption in a single pass.
+A symmetric encryption system that combines Huffman coding for compression with RSA cipher for security. Achieve both data compression and encryption in a single pass.
 
 ## Overview
 
 Huffman Cipher provides:
 - **Compression**: Via Huffman coding algorithm
-- **Encryption**: Using XOR cipher with key expansion
+- **Encryption**: Using RSA cipher with key expansion
 - **Efficiency**: Single-pass compression and encryption
 - **Security**: Key-based symmetric encryption
 
@@ -25,12 +25,11 @@ Huffman Cipher provides:
 1. Build Huffman tree from input
 2. Generate Huffman codes
 3. Encode data using Huffman codes
-4. Apply XOR cipher with expanded key
-5. Package encrypted data with tree
+4. Apply RSA cipher
 
 ### Decryption Process
 1. Extract Huffman tree
-2. Apply XOR decipher
+2. Apply RSA decipher
 3. Decode using Huffman tree
 4. Reconstruct original data
 

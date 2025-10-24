@@ -53,7 +53,7 @@ You can run the main script `HuffmanCipher.py` to perform encryption and decrypt
 python HuffmanCipher.py
 ```
 
-##🤝 Contributing
+## 🤝 Contributing
 
 Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
 

@@ -1,40 +1,39 @@
 # LEARNING.md
 
 ## Project Overview
-
-This project implements a hybrid cryptographic system that combines Huffman coding for data compression with the RSA algorithm for encryption. The primary objective is to efficiently and securely encrypt text data by first reducing its size using Huffman coding and then encrypting the compressed data with RSA. This approach leverages the benefits of both compression and public-key cryptography.
+**Huffman Cipher** is a hybrid cryptographic and compression system developed in Python. It integrates **Huffman Coding** for lossless data compression with the **RSA (Rivest–Shamir–Adleman)** algorithm for public-key encryption. The system demonstrates a "Compress-then-Encrypt" architecture, where a message is first compressed to reduce its size and entropy, and then encrypted to ensure confidentiality. It also includes a module for calculating information-theoretic metrics like entropy and redundancy.
 
 ## Tech Stack and Key Technologies
-
-*   **Language:** Python
-*   **Algorithms:**
-    *   RSA (Rivest–Shamir–Adleman) for public-key cryptography.
-    *   Huffman Coding for lossless data compression.
-    *   Modular Exponentiation (Fast Exponentiation) for efficient RSA calculations.
+*   **Language:** Python 3
 *   **Core Concepts:**
-    *   Public-Key Cryptography
-    *   Data Compression
-    *   Number Theory (Euclidean Algorithm for GCD, Extended Euclidean Algorithm for modular inverse)
+    *   **Cryptography:** RSA (Public/Private key generation, Modular Arithmetic).
+    *   **Data Compression:** Huffman Coding (Binary Trees, Priority Queues).
+    *   **Information Theory:** Entropy, Redundancy calculation.
+    *   **Algorithms:** Extended Euclidean Algorithm, Modular Exponentiation (Square-and-Multiply).
 
 ## Notable Libraries
+The project relies almost entirely on Python's standard library, showcasing the ability to implement complex algorithms from first principles.
+*   **`collections.defaultdict`**: Used for efficient frequency counting of characters in the corpus.
+*   **`math.log`**: Utilized for calculating the Shannon entropy of the source text.
+*   **`sys`**: Used for system-level operations (though usage is minimal).
 
-The project is implemented primarily using standard Python libraries, demonstrating a strong understanding of core programming concepts without reliance on external frameworks. The key components are built from scratch, including:
-
-*   **collections.defaultdict:** Used for efficiently counting character frequencies in the Huffman coding implementation.
-*   **math.log:** Used to calculate the entropy of the text data.
+*Note: The project implements its own Priority Queue (`PQ` class) and Graph structures (`HuffmanTree`, `Vertices`, `Arista`) instead of using pre-built libraries like `heapq` or `networkx`.*
 
 ## Major Achievements and Skills Demonstrated
-
-*   **Implemented the RSA Public-Key Cryptosystem:** Designed and implemented the RSA algorithm from scratch, including key generation (public and private keys), encryption, and decryption.
-*   **Applied Huffman Coding for Data Compression:** Developed a Huffman tree implementation to generate variable-length codes for characters based on their frequencies, effectively compressing the input text before encryption.
-*   **Developed a Hybrid Encryption System:** Integrated Huffman coding and RSA to create a single, efficient workflow that both compresses and encrypts data.
-*   **Implemented Core Cryptographic and Compression Algorithms:** Demonstrated a deep understanding of the underlying principles of both RSA and Huffman coding by implementing them without high-level libraries.
-*   **Optimized RSA with Modular Exponentiation:** Utilized the fast exponentiation algorithm to perform the modular exponentiation required for RSA encryption and decryption efficiently.
+*   **Full RSA Implementation**: Designed the complete RSA workflow from scratch, including:
+    *   Key generation (deriving $n, e, d$ from primes $p, q$).
+    *   Implementation of the **Extended Euclidean Algorithm** to find the modular multiplicative inverse for the private key.
+    *   **Modular Exponentiation**: Implemented an efficient "square-and-multiply" algorithm (visible in `FastExp.py` and `HuffmanCipher.py`) to handle large number powers required by RSA.
+*   **Custom Huffman Compression Engine**:
+    *   Built a custom **Priority Queue** and **Binary Tree** structure to generate Huffman codes.
+    *   Implemented serialization of compressed bitstreams into blocks for RSA encryption.
+    *   Developed a frequency analysis tool to train the Huffman tree on a corpus (`LongText.txt`).
+*   **Hybrid System Architecture**: Successfully integrated two distinct algorithms (compression and encryption) into a seamless pipeline (`HuffmanCipher.py`), handling the conversion between binary strings, integers, and ciphertext.
+*   **Information Theory Analysis**: Implemented functionality to calculate and report the **Entropy** (bits/letter), **Absolute Range**, and **Redundancy** of the source text, demonstrating a theoretical understanding of data compression limits.
 
 ## Skills Gained/Reinforced
-
-*   **Cryptography:** Gained practical experience in implementing a widely-used public-key cryptosystem (RSA) and understanding its components, including key generation and the encryption/decryption processes.
-*   **Data Compression:** Reinforced knowledge of data compression techniques by implementing the Huffman coding algorithm.
-*   **Algorithm Implementation:** Demonstrated the ability to translate complex mathematical and algorithmic concepts into functional Python code.
-*   **Object-Oriented Programming (OOP):** Applied OOP principles to structure the Huffman tree and related components in a modular and reusable way.
-*   **Python Programming:** Enhanced proficiency in Python, including file I/O, data structures, and algorithmic implementation.
+*   **Algorithm Design & Analysis**: Deepened understanding of greedy algorithms (Huffman) and number-theoretic algorithms (RSA).
+*   **Low-Level Data Manipulation**: Experience with bit-level operations, binary string manipulation, and block padding schemes.
+*   **Object-Oriented Programming (OOP)**: Designed modular classes (`HuffmanTree`, `Arista`, `Vertices`, `PQ`) to encapsulate logic and state.
+*   **Secure Coding Practices**: Understanding the mathematical foundations of public-key cryptography and the importance of key management.
+*   **Python Proficiency**: Advanced usage of Python generators (`yield`), dictionary comprehensions, and list manipulations.

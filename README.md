@@ -2,60 +2,82 @@
 
 ![Project Logo](PLACEHOLDER_URL)
 
-[![Language](https://img.shields.io/badge/Language-Python-blue.svg)](https://www.python.org/)
+[![Language](https://img.shields.io/badge/Language-Python_3-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](PLACEHOLDER_URL)
 
-A hybrid encryption system that combines Huffman coding for compression with the RSA cipher for security. This project allows you to achieve both data compression and encryption in a single, efficient process.
+**Huffman Cipher** is a hybrid encryption system that combines **Huffman coding** for efficient data compression with the **RSA algorithm** for secure public-key encryption. This project demonstrates a "Compress-then-Encrypt" approach, achieving both storage efficiency and data security in a single workflow.
 
 ## 🏛️ Architecture
 
-The project follows a straightforward architecture, combining compression and encryption into a single workflow:
+The system operates in two main phases: **Training** (building the compression model) and **Operation** (Encryption/Decryption).
 
 ```mermaid
-graph TD;
-    A[Plaintext] --> B{Huffman Coding};
-    B --> C[Compressed Data];
-    C --> D{RSA Encryption};
-    D --> E[Ciphertext];
+graph TD
+    subgraph "1. Training Phase"
+    A[Corpus (LongText.txt)] -->|Frequency Analysis| B(Huffman Tree)
+    B --> C{Huffman Codes}
+    end
+
+    subgraph "2. Encryption Flow"
+    D[Plaintext] -->|Huffman Compress| E[Binary Data]
+    E -->|Block & Pad| F[Integer Blocks]
+    F -->|RSA Encrypt (M^e mod n)| G[Ciphertext]
+    end
+
+    subgraph "3. Decryption Flow"
+    G -->|RSA Decrypt (C^d mod n)| H[Integer Blocks]
+    H -->|Huffman Decompress| I[Recovered Plaintext]
+    end
+
+    C -.-> D
+    C -.-> H
 ```
 
 ## ✨ Features
 
--   **📉 High Compression Ratio:** Achieves significant size reduction (average 40-60%) using Huffman coding.
--   **🔑 Secure Encryption:** Implements the RSA algorithm for secure public-key encryption.
--   **🔄 Bidirectional:** Supports both encryption/compression and decryption/decompression.
--   **📊 Statistical Analysis:** Provides insights into the compression ratio and entropy of the data.
--   **🐍 Python-Powered:** Built entirely in Python with no external libraries, making it lightweight and easy to understand.
+-   **📉 Efficient Compression:** Uses Huffman coding to reduce message size before encryption, based on character frequency analysis.
+-   **🔑 RSA Encryption:** Implements the RSA public-key cryptosystem from scratch, including key generation and modular exponentiation.
+-   **📊 Information Theory Metrics:** Calculates and displays entropy, absolute range, and redundancy of the training corpus.
+-   **🐍 Pure Python:** Built entirely with standard Python libraries, making it an excellent educational resource for understanding cryptographic and compression algorithms.
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-*   Python 3.x
+-   **Python 3.x** installed on your system.
+-   A text file named `LongText.txt` in the same directory (used as a corpus to train the Huffman tree).
 
 ### Installation
 
 1.  Clone the repository:
-    ```sh
+    ```bash
     git clone https://github.com/adcondev/huffman-cipher.git
     ```
 2.  Navigate to the project directory:
-    ```sh
+    ```bash
     cd huffman-cipher
     ```
 
 ### Usage
 
-You can run the main script `HuffmanCipher.py` to perform encryption and decryption. The script will prompt you for the necessary inputs (e.g., `p`, `q`, `e`, and the message to be encrypted).
+1.  Run the main script:
+    ```bash
+    python HuffmanCipher.py
+    ```
 
-```sh
-python HuffmanCipher.py
-```
+2.  **Key Generation**: The script will prompt you for prime numbers to generate RSA keys:
+    -   `p`: A prime number (e.g., 61)
+    -   `q`: Another prime number (e.g., 53)
+    -   `e`: Public exponent (usually a small prime like 17 or 65537, must be coprime to `lcm(p-1, q-1)`)
+
+3.  **Encryption**: Enter the message you want to encrypt. The script will output the encrypted integer blocks.
+
+4.  **Decryption**: To decrypt, you will be prompted to enter the private key components (`n`, `e`, `d`) which were generated in the previous step.
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
+Contributions are welcome! If you have ideas for improvements or find bugs, please open an issue or submit a pull request.
 
 1.  Fork the Project
 2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)

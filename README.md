@@ -15,18 +15,18 @@ The system operates in two main phases: **Training** (building the compression m
 ```mermaid
 graph TD
     subgraph "1. Training Phase"
-    A[Corpus (LongText.txt)] -->|Frequency Analysis| B(Huffman Tree)
-    B --> C{Huffman Codes}
+    A["Corpus (LongText.txt)"] -->|Frequency Analysis| B("Huffman Tree")
+    B --> C{"Huffman Codes"}
     end
 
     subgraph "2. Encryption Flow"
     D[Plaintext] -->|Huffman Compress| E[Binary Data]
     E -->|Block & Pad| F[Integer Blocks]
-    F -->|RSA Encrypt (M^e mod n)| G[Ciphertext]
+    F -->|"RSA Encrypt (M^e mod n)"| G[Ciphertext]
     end
 
     subgraph "3. Decryption Flow"
-    G -->|RSA Decrypt (C^d mod n)| H[Integer Blocks]
+    G -->|"RSA Decrypt (C^d mod n)"| H[Integer Blocks]
     H -->|Huffman Decompress| I[Recovered Plaintext]
     end
 
